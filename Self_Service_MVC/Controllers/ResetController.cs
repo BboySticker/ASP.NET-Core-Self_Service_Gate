@@ -28,10 +28,10 @@ namespace Self_Service_MVC.Services
             return View();
         }
 
-        public IActionResult ResetPage(UserInfo user)
+        public IActionResult ResetPage(Code code)
         {
-            usercode = user.MobileCode; //用户填入的code
-            officalcode = user.OfficalCode;
+            usercode = code.MobileCode; //用户填入的code
+            officalcode = code.OfficalCode;
             if (usercode == officalcode)
             {
                 return View();
@@ -42,6 +42,7 @@ namespace Self_Service_MVC.Services
             }
         }
 
+        [HttpPost]
         public IActionResult InputPhoneCode(UserInfo user)
         {
             phone = user.UserPhone;
@@ -49,10 +50,12 @@ namespace Self_Service_MVC.Services
             if (accept)
             {
                 Random rad = new Random();
-                int mobile_code = rad.Next(100000, 1000000);
+                //int mobile_code = rad.Next(100000, 1000000);
+                int mobile_code = 123456;
                 string content = "您的验证码是：" + mobile_code.ToString() + " 。请不要把验证码泄露给其他人。";
 
-                returnData = sendphone.SendRequest("C12282372", "6f0a09c6dcf68371640f4c96d48c2842", phone, content);
+                //returnData = sendphone.SendRequest("C68578069", "2c9301f6638e4ab2d7416ed88167bfc6", phone, content);
+                //sendphone.SendRequestByTencent();
 
                 ViewData["Phone"] = phone.Substring(0, 3) + "****" + phone.Substring(7, 4);
                 ViewData["OfficalCode"] = mobile_code;

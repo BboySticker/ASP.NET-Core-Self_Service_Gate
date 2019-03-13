@@ -1,7 +1,8 @@
 ﻿@{
     ViewData["Title"] = "InputCode";
 }
-
+@using Self_Service_MVC.Models
+@model Code
 @section Scripts{
     <script src="~/js/gate.js"></script>
     <script src="~/js/site.js"></script>
@@ -19,11 +20,11 @@
                 <p>@ViewData["Phone"]</p>
                 <p>请检查你的手机来获取密码重置代码。</p>
             </div>
-            <form asp-controller="Reset" asp-action="ResetPage" method="get">
+            <form asp-controller="Reset" asp-action="ResetPage" method="post">
                 <div class="form-group has-feedback">
                     <span class="glyphicon glyphicon-comment form-control-feedback"></span>
-                    <input type="text" name="MobileCode" class="form-control" placeholder="密码重置代码">
-                    <input type="hidden" name="OfficalCode" value="@ViewData["OfficalCode"]" />
+                    <input type="text" class="form-control" placeholder="密码重置代码" asp-for="MobileCode" >
+                    <input type="hidden" name="OfficalCode" value="@ViewData["OfficalCode"]"/>
                 </div>
                 <div class="modal-footer">
                     <button id="check" type="submit" class="btn btn-group-sm btn-block btn-info">

@@ -2,13 +2,16 @@
     ViewData["Title"] = "InputPhoneNumber";
 }
 
+@using Self_Service_MVC.Models
+@model UserInfo
+
 @section Scripts{
     <script src="~/js/gate.js"></script>
     <script src="~/js/site.js"></script>
 }
 
 <div class="modal fade bs-example-modal-sm" id="myModal" role="dialog" aria-label="myModallabel" aria-hidden="true">
-    <form asp-controller="Reset" asp-action="InputPhoneCode" method="get">
+    <form asp-controller="Reset" asp-action="InputPhoneCode" method="post">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
@@ -20,7 +23,7 @@
                 </div>
                 <div class="form-group has-feedback">
                     <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
-                    <input type="text" name="UserPhone" style="width:99%" class="form-control" placeholder="完整手机号">
+                    <input type="text" asp-for="UserPhone" class="form-control" placeholder="完整手机号">
                 </div>
                 <div class="modal-footer">
                     <button id="check" type="submit" class="btn btn-group-sm btn-block btn-info">

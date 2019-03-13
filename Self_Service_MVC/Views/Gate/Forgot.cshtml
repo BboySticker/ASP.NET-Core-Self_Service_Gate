@@ -13,28 +13,27 @@
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <p class="modal-title"  style="text-align: center">忘记密码</p>
+                <p class="modal-title" style="text-align: center">忘记密码</p>
             </div>
             <div class="modal-body" style="text-align:center">
                 <h3>重置密码</h3>
                 <p>如果你能够找到你的账户名称，那么你现在可以通过短信/邮件重置你的密码。</p>
             </div>
-            <div class="form-group has-feedback">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                <input type="text" class="form-control" placeholder="输入忘记密码的邮箱地址">
-            </div>
-            <div class="modal-footer" style="text-align:center">
-                <form class="form-group" id="checkform" name="checkform" style="display: inline-block">
-                    <button id="check" type="submit" class="btn btn-sm btn-success" style="float:left" asp-area="" asp-controller="Gate" asp-action="ConfirmByEmail">
+            <form class="form-group" id="checkform" name="checkform" style="display: inline-block" method="post">
+                <div class="form-group has-feedback">
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    <input type="text" class="form-control" placeholder="输入忘记密码的邮箱地址" asp-for="UserEmail">
+                </div>
+                <div class="modal-footer" style="text-align:center">
+                    <button id="check" type="submit" class="btn btn-sm btn-success" style="float:left" asp-controller="Gate" asp-action="ConfirmByEmail">
                         通过备用邮箱找回
                     </button>
-                </form>
-                <form class="form-group" id="checkform" name="checkform" style="display: inline-block">
                     <button id="check" type="submit" class="btn btn-sm btn-info" style="float:right" asp-controller="Gate" asp-action="ConfirmByPhone">
                         通过手机短信找回
                     </button>
-                </form>
-            </div>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>

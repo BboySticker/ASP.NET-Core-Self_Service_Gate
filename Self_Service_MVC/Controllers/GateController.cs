@@ -31,13 +31,26 @@ namespace Self_Service_MVC.Services
             return View();
         }
 
-        public IActionResult ConfirmByEmail()
+        public IActionResult ConfirmByEmail(UserInfo user)
         {
+            /*查询函数连接AD接口，查找输入的UserEmail是否存在
+             if GetUserEmailFunc(uesr.UserEmail)
+             {
+                return View();
+             }
+             else
+             {
+                return RedirectToAction();
+             }
+             */
             return View();
         }
 
-        public IActionResult ConfirmByPhone()
+        public IActionResult ConfirmByPhone(UserInfo user)
         {
+            /*
+             同上
+             */
             return View();
         }
 

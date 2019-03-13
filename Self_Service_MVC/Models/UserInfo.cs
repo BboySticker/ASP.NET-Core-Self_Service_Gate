@@ -12,8 +12,6 @@ namespace Self_Service_MVC.Models
         private string Password { get; set; }
         public string UserPhone { get; set; }
         public string UserEmail { get; set; }
-        public int MobileCode { get; set; }
-        public int OfficalCode { get; set; }
 
     }
 }
