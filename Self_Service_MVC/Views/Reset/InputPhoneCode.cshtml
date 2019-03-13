@@ -1,11 +1,36 @@
 ﻿@{
     ViewData["Title"] = "InputCode";
 }
+
 @using Self_Service_MVC.Models
 @model Code
+
 @section Scripts{
     <script src="~/js/gate.js"></script>
     <script src="~/js/site.js"></script>
+    <script>
+        function start() {
+            var s = 10;
+            document.getElementById("Button1").disabled = true;
+            document.getElementById("Button1").value = s;
+            window.setTimeout("tick()", 1000);
+        }
+        function tick() {
+            var time = new Number(document.getElementById("Button1").value);
+            if (time > 0) {
+                document.getElementById("Button1").value = time - 1;
+                window.setTimeout("tick()", 1000);
+            }
+            else {
+                document.getElementById("Button1").disabled = false;
+                document.getElementById("Button1").value = "重新发送";
+                document.getElementById("in").disabled = true;
+            }
+        }
+    </script>
+    <script>
+        start();
+    </script>
 }
 
 <div class="modal fade bs-example-modal-sm" id="myModal" role="dialog" aria-label="myModallabel" aria-hidden="true">
@@ -21,10 +46,10 @@
                 <p>请检查你的手机来获取密码重置代码。</p>
             </div>
             <form asp-controller="Reset" asp-action="ResetPage" method="post">
-                <div class="form-group has-feedback">
+                <div class="form-group has-feedback form-inline">
                     <span class="glyphicon glyphicon-comment form-control-feedback"></span>
-                    <input type="text" class="form-control" placeholder="密码重置代码" asp-for="MobileCode" >
-                    <input type="hidden" name="OfficalCode" value="@ViewData["OfficalCode"]"/>
+                    <input type="text" class="form-control" id="in" placeholder="密码重置代码" asp-for="MobileCode"><INPUT TYPE="button" class="btn btn-warning btn-primary" onclick="javascript:window.location.reload()" NAME="Button1" id="Button1">
+                    <input type="hidden" name="OfficalCode" value="@ViewData["OfficalCode"]" />
                 </div>
                 <div class="modal-footer">
                     <button id="check" type="submit" class="btn btn-group-sm btn-block btn-info">
