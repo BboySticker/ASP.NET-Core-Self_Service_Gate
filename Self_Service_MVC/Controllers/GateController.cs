@@ -1,11 +1,5 @@
-﻿using System.Threading.Tasks;
-using Self_Service_MVC.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Self_Service_MVC.Models;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Session;
 
 namespace Self_Service_MVC.Services
 {

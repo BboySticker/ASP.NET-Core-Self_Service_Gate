@@ -1,15 +1,8 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
-using System.IO;
-using System.Net;
-using System.Text;
-using Microsoft.IdentityModel.Protocols;
 using System.Collections.Generic;
 
 using qcloudsms_csharp;
-using qcloudsms_csharp.json;
-using qcloudsms_csharp.httpclient;
 
 
 namespace Self_Service_MVC.Services

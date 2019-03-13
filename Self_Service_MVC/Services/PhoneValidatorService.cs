@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Net.Http;
-using System.Collections;
+﻿using System.Collections;
 using System.Text.RegularExpressions;
 
 namespace Self_Service_MVC.Services

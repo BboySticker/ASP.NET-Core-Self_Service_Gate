@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Self_Service_MVC.Services;
 using Self_Service_MVC.Models;
-using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Self_Service_MVC.Services
 {
