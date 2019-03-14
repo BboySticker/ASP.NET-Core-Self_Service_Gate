@@ -21,9 +21,21 @@ namespace Self_Service_MVC.Services
             _validator = pv;
         }
 
-        public IActionResult Reset()
+        public IActionResult Reset(Password password)
         {
-            return View();
+            if (password.PW1 == password.PW2)
+            {
+                /*
+                 调用接口，修改用户密码
+                    修改成功：跳转下一页面
+                    修改失败：刷新页面
+                 */
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("ResetPage");
+            }
         }
 
         public IActionResult ResetPage(Code code)
