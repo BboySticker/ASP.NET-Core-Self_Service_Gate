@@ -25,6 +25,12 @@ namespace Self_Service_MVC.Services
         {
             if (password.PW1 == password.PW2)
             {
+                //如果新密码长度小于6位
+                if (password.PW1.Length < 6)
+                {
+                    //抛出异常
+                    return RedirectToAction("ResetPage");
+                }
                 /*
                  调用接口，修改用户密码
                     修改成功：跳转下一页面
