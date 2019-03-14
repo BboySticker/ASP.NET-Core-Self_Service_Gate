@@ -13,7 +13,7 @@ namespace Self_Service_MVC.Services
         private string phone;
         private int usercode;
         private int officalcode;
-        private Task<string> returnData;
+        //private Task<string> returnData;
 
         // 构造函数 依赖注入
         public ResetController(PhoneValidator pv)
