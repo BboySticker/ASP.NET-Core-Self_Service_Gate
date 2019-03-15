@@ -1,10 +1,14 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Aliyun.Acs.Sms;
+using Aliyun.Acs.Sms.Model.V20160927;
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Profile;
 using Aliyun.Acs.Core.Exceptions;
-using Aliyun.Acs.Ecs.Model.V20140526;
 
 
 namespace Self_Service_MVC.Services
@@ -15,7 +19,6 @@ namespace Self_Service_MVC.Services
 
         public async Task<string> SendRequest(string account, string password, string mobile, string content)
         {
-            //腾讯云https://yun.tim.qq.com/v5/tlssmssvr/sendsms?sdkappid=1400193053&random={1}
             var values = new Dictionary<string, string>
             {
                 {"account", account },
@@ -29,7 +32,7 @@ namespace Self_Service_MVC.Services
             return result;
         }
 
-        public void SendRequestByAli()
+        public void SendRequestByAli(string code)
         {
             IClientProfile profile = DefaultProfile.GetProfile(
             "<your-region-id>",
@@ -39,11 +42,13 @@ namespace Self_Service_MVC.Services
             try
             {
                 // 构造请求
-                DescribeInstancesRequest request = new DescribeInstancesRequest();
-                request.PageSize = 10;
+                SingleSendSmsRequest request = new SingleSendSmsRequest();
+                request.SignName = "切尔思";
+                request.TemplateCode = "SMS_160570919";
+                request.ParamString = code;
                 // 发起请求，并得到 Response
-                DescribeInstancesResponse response = client.GetAcsResponse(request);
-                System.Console.WriteLine(response.TotalCount);
+                SingleSendSmsResponse response = client.GetAcsResponse(request);
+                System.Console.WriteLine(response.HttpResponse.Content);
             }
             catch (ServerException ex)
             {
