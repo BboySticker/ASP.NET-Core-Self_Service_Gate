@@ -71,7 +71,6 @@ namespace Self_Service_MVC.Services
                 string content = "您的验证码是：" + mobile_code.ToString() + " 。请不要把验证码泄露给其他人。";
 
                 //returnData = sendphone.SendRequest("C68578069", "2c9301f6638e4ab2d7416ed88167bfc6", phone, content);
-                //sendphone.SendRequestByTencent();
 
                 ViewData["Phone"] = phone.Substring(0, 3) + "****" + phone.Substring(7, 4);
                 ViewData["OfficalCode"] = mobile_code;

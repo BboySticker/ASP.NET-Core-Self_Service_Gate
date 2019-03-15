@@ -1,8 +1,10 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-
-using qcloudsms_csharp;
+using Aliyun.Acs.Core;
+using Aliyun.Acs.Core.Profile;
+using Aliyun.Acs.Core.Exceptions;
+using Aliyun.Acs.Ecs.Model.V20140526;
 
 
 namespace Self_Service_MVC.Services
@@ -27,14 +29,30 @@ namespace Self_Service_MVC.Services
             return result;
         }
 
-        public void SendRequestByTencent()
+        public void SendRequestByAli()
         {
-            int appid = 1400193053;
-            string appkey = "7735847c74e7d4ce98d309fcddd78743";
-            string phonenum = "18510311192";
-
-            SmsSingleSender ssender = new SmsSingleSender(appid, appkey);
-            var result = ssender.send(0, "86", phonenum, "【腾讯云】您的验证码是: 666666", "", "");
+            IClientProfile profile = DefaultProfile.GetProfile(
+            "<your-region-id>",
+            "<your-access-key-id>",
+            "<your-access-key-secret>");
+            DefaultAcsClient client = new DefaultAcsClient(profile);
+            try
+            {
+                // 构造请求
+                DescribeInstancesRequest request = new DescribeInstancesRequest();
+                request.PageSize = 10;
+                // 发起请求，并得到 Response
+                DescribeInstancesResponse response = client.GetAcsResponse(request);
+                System.Console.WriteLine(response.TotalCount);
+            }
+            catch (ServerException ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+            }
+            catch (ClientException ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+            }
         }
     }
 
