@@ -4,7 +4,7 @@
     {
         public int ID { get; set; }
         public string Username { get; set; }
-        private string Password { get; set; }
+        public string Password { get; set; }
         public string UserPhone { get; set; }
         public string UserEmail { get; set; }
 
