@@ -34,7 +34,7 @@ namespace Self_Service_MVC.Services
 
         public void SendRequestByAli(string phone, string code)
         {
-            IClientProfile profile = DefaultProfile.GetProfile("cn-beijing", "LTAI1Map7FO8PCvf", "R0ZUqBP3Z69FGVLUUwjkDJ5r2we6P8");
+            IClientProfile profile = DefaultProfile.GetProfile("cn-beijing", "=", "=");
             //DefaultProfile.AddEndpoint("cn-hangzhou", "cn-hangzhou", "Dysmsapi", "dysmsapi.aliyuncs.com");
             DefaultAcsClient client = new DefaultAcsClient(profile);
             try
@@ -67,7 +67,7 @@ namespace Self_Service_MVC.Services
                 {"PhoneNumbers", mobile },
                 {"SignName", "切尔思" },
                 {"TemplateCode", "SMS_160570919"  },
-                {"AccessKeyId", "LTAI1Map7FO8PCvf" },
+                {"AccessKeyId", "=" },
                 {"Action", "SendSms" },
                 {"TemplateParam", JsonConvert.ToString("code:123456") }
             };
