@@ -7,13 +7,19 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Aliyun.Acs.Core" Version="1.0.0" />
-    <PackageReference Include="Aliyun.Acs.Ecs" Version="1.0.0" />
-    <PackageReference Include="Aliyun.Acs.Sms" Version="1.0.0" />
+    <PackageReference Include="aliyun-net-sdk-sms" Version="1.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="qcloud.qcloudsms_csharp" Version="0.1.6" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Reference Include="aliyun-net-sdk-core">
+      <HintPath>..\..\..\..\aliyun-net-sdk-Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

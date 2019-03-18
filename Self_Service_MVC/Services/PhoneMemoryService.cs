@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Aliyun.Acs.Sms;
-using Aliyun.Acs.Sms.Model.V20160927;
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Profile;
 using Aliyun.Acs.Core.Exceptions;
-
+using Aliyun.Acs.Sms;
+using Aliyun.Acs.Sms.Model.V20160927;
+using Newtonsoft.Json;
 
 namespace Self_Service_MVC.Services
 {
@@ -32,17 +32,17 @@ namespace Self_Service_MVC.Services
             return result;
         }
 
-        public void SendRequestByAli(string code)
+        public void SendRequestByAli(string phone, string code)
         {
-            IClientProfile profile = DefaultProfile.GetProfile(
-            "<your-region-id>",
-            "<your-access-key-id>",
-            "<your-access-key-secret>");
+            IClientProfile profile = DefaultProfile.GetProfile("cn-beijing", "LTAI1Map7FO8PCvf", "R0ZUqBP3Z69FGVLUUwjkDJ5r2we6P8");
+            //DefaultProfile.AddEndpoint("cn-hangzhou", "cn-hangzhou", "Dysmsapi", "dysmsapi.aliyuncs.com");
             DefaultAcsClient client = new DefaultAcsClient(profile);
             try
             {
                 // 构造请求
                 SingleSendSmsRequest request = new SingleSendSmsRequest();
+                request.ResourceOwnerAccount = "Chunfeng.Zhang@1266439463042087.onaliyun.com";
+                request.RecNum = phone;
                 request.SignName = "切尔思";
                 request.TemplateCode = "SMS_160570919";
                 request.ParamString = code;
@@ -58,6 +58,39 @@ namespace Self_Service_MVC.Services
             {
                 System.Console.WriteLine(ex.ToString());
             }
+        }
+
+        public void SendRequestByAliApi(string mobile, string code)
+        {
+            var values = new Dictionary<string, string>
+            {
+                {"PhoneNumbers", mobile },
+                {"SignName", "切尔思" },
+                {"TemplateCode", "SMS_160570919"  },
+                {"AccessKeyId", "LTAI1Map7FO8PCvf" },
+                {"Action", "SendSms" },
+                {"TemplateParam", JsonConvert.ToString("code:123456") }
+            };
+            var httpcontent = new FormUrlEncodedContent(values);
+            var response = client.PostAsync("https://dysmsapi.aliyuncs.com/", httpcontent);
+            System.Console.WriteLine(response.Status); //WaitingForActivation
+            System.Console.WriteLine(response.Result);
+            /*
+             WaitingForActivation
+                StatusCode: 400, ReasonPhrase: 'Bad Request', Version: 1.1, Content: System.Net.Http.HttpConnection+HttpConnectionResponseContent, Headers:
+                {
+                  Date: Mon, 18 Mar 2019 09:21:25 GMT
+                  Connection: close
+                  Access-Control-Allow-Origin: *
+                  Access-Control-Allow-Methods: POST, GET, OPTIONS
+                  Access-Control-Allow-Headers: X-Requested-With, X-Sequence, _aop_secret, _aop_signature
+                  Access-Control-Max-Age: 172800
+                  Server: Jetty(7.2.2.v20101205)
+                  Content-Type: text/xml; charset=UTF-8
+                  Content-Length: 353
+                }
+             */
+
         }
     }
 
